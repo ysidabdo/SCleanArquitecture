@@ -4,11 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+//Ayuda a organizar según el rol que tiene en la capa de aplicación
 builder.Configuration
     .AddJsonFile("Config/appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"Config/appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
 
-builder.AddSQLConnection();
+builder.AddConfiguration();
 builder.AgregarCola();
 
 var app = builder.Build();
